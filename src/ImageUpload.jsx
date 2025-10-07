@@ -28,7 +28,7 @@ const ImageUpload = ({onResponse}) => {
     const formData = new FormData();
     formData.append("file", selectedFile);
     try {
-      const res = await fetch("http://localhost:8000/predict", {
+      const res = await fetch("https://render-backend-test-3mti.onrender.com/predict", {
         method: "POST",
         body: formData,
       });
