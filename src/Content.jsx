@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from "@mui/material";
 import ImageUpload from "./ImageUpload";
 
 function Content() {
 const [originalImage, setOriginalImage] =  useState("");
 const [prediction, setPrediction] = useState("");
 const [imageInfo, setImageInfo] = useState({});
+const [userType, setUserType] = useState("regular"); // "doctor" or "regular"
 
   const formatToSignificantDigits = (num, digits = 4) => {
     if (num === 0) return "0";
@@ -18,10 +19,31 @@ const [imageInfo, setImageInfo] = useState({});
     setImageInfo(data.image_info);
   };
 
+  const handleUserTypeChange = (event) => {
+    setUserType(event.target.value);
+  };
+
   return (
     <div>
         <Paper style={{ padding: 16, marginTop: 64, minWidth: 400}}>
-          <ImageUpload onResponse={handleApiResponse} />
+          {/* User Type Selection */}
+          <Box sx={{ mb: 2 }}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">User Type</FormLabel>
+              <RadioGroup
+                row
+                aria-label="user-type"
+                name="user-type"
+                value={userType}
+                onChange={handleUserTypeChange}
+              >
+                <FormControlLabel value="user" control={<Radio />} label="User" />
+                <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
+              </RadioGroup>
+            </FormControl>
+          </Box>
+          
+          <ImageUpload onResponse={handleApiResponse} userType={userType} />
           <Divider style={{ margin: '16px 0' }} />
 
          {originalImage ? (
@@ -37,6 +59,18 @@ const [imageInfo, setImageInfo] = useState({});
                 <TableContainer component={Paper} sx={{ width: '100%' }}>
                   <Table>
                     <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <Typography variant="subtitle1" gutterBottom sx={{ display: 'block' }}>
+                            Classifcation
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="subtitle1">
+                             Probability
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
                       <TableRow>
                         <TableCell>
                           <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>

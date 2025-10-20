@@ -1,7 +1,7 @@
 import { useRef, useState} from "react";
 import { Box, Button, Typography, Alert, Snackbar } from "@mui/material";
  
-const ImageUpload = ({onResponse}) => {
+const ImageUpload = ({onResponse, userType}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] =  useState(null);
   const [loading, setLoading] =  useState(false);
@@ -35,17 +35,28 @@ const ImageUpload = ({onResponse}) => {
     const formData = new FormData();
     formData.append("file", selectedFile);
     
+    // Determine endpoint and base URL based on user type
+    let endpoint = "";
+    let baseUrl = "";
+    if (userType === "doctor") {
+      endpoint = "/doctor";
+      baseUrl = "https://capstone-team-18-service.onrender.com";
+    } else {
+      endpoint = "/user";
+      baseUrl = "https://capstone-team-18-service-2.onrender.com";
+    }
+
     try {
-      const res = await fetch("https://capstone-team-18-service.onrender.com/predict", {
+      const res = await fetch(`${baseUrl}${endpoint}`, {
         method: "POST",
         body: formData,
       });
-      
+
       if (!res.ok) {
         const errorData = await res.text();
         throw new Error(`Server error ${res.status}: ${errorData}`);
       }
-      
+
       const blob = await res.json();
       onResponse({
         originalImage: previewUrl || "",
@@ -63,7 +74,7 @@ const ImageUpload = ({onResponse}) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2  }}>
-      <p>Upload a .png, .jpg, .jpeg file:</p>
+      <p>Upload your image:</p>
       <input
         ref={fileInputRef}
         type="file" 
@@ -81,7 +92,6 @@ const ImageUpload = ({onResponse}) => {
       </Button>
       {loading && <Typography variant="body2" color="text.secondary">Loading...</Typography>}
       
-      {/* Error Snackbar */}
       <Snackbar 
         open={showError} 
         autoHideDuration={6000} 
@@ -96,12 +106,6 @@ const ImageUpload = ({onResponse}) => {
           {error}
         </Alert>
       </Snackbar>
-      
-      {/* <Typography 
-        variant="body2" 
-        color="text.secondary">
-          Selected: {selectedFile ? selectedFile.name : 'None'}
-        </Typography> */}
     </Box>
  
   );
