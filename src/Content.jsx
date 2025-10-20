@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio} from "@mui/material";
+import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab } from "@mui/material";
 import ImageUpload from "./ImageUpload";
 
 function Content() {
 const [originalImage, setOriginalImage] =  useState("");
 const [prediction, setPrediction] = useState("");
 const [imageInfo, setImageInfo] = useState({});
-const [userType, setUserType] = useState("regular"); // "doctor" or "regular"
+const [userType, setUserType] = useState("user"); // "doctor" or "user"
 
   const formatToSignificantDigits = (num, digits = 4) => {
     if (num === 0) return "0";
@@ -19,30 +19,26 @@ const [userType, setUserType] = useState("regular"); // "doctor" or "regular"
     setImageInfo(data.image_info);
   };
 
-  const handleUserTypeChange = (event) => {
-    setUserType(event.target.value);
+  const handleTabChange = (event, newValue) => {
+    setUserType(newValue);
   };
 
   return (
     <div>
         <Paper style={{ padding: 16, marginTop: 64, minWidth: 400}}>
-          {/* User Type Selection */}
-          <Box sx={{ mb: 2 }}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">User Type</FormLabel>
-              <RadioGroup
-                row
-                aria-label="user-type"
-                name="user-type"
-                value={userType}
-                onChange={handleUserTypeChange}
-              >
-                <FormControlLabel value="user" control={<Radio />} label="User" />
-                <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
-              </RadioGroup>
-            </FormControl>
-          </Box>
-          
+          {/* User Type Tabs */}
+          <Tabs
+            value={userType}
+            onChange={handleTabChange}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+            sx={{ mb: 2 }}
+          >
+            <Tab label="User" value="user" />
+            <Tab label="Doctor" value="doctor" />
+          </Tabs>
+
           <ImageUpload onResponse={handleApiResponse} userType={userType} />
           <Divider style={{ margin: '16px 0' }} />
 

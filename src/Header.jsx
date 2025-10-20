@@ -9,7 +9,7 @@ function Header() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" >
-             SAIDS 699 Team 18 Image Classifier
+             SIADS 699 Team 18 Lesion Classifier
           </Typography>
           <div style={{ flexGrow: 1 }} />
             <Link href="https://www.linkedin.com/in/andre-luis-onofre-97347428/" color="inherit" target="_blank">
