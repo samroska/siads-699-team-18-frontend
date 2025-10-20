@@ -40,10 +40,10 @@ const ImageUpload = ({onResponse, userType}) => {
     let baseUrl = "";
     if (userType === "doctor") {
       endpoint = "/doctor";
-      baseUrl = "https://capstone-team-18-service.onrender.com";
+      baseUrl = "https://capstone-team-18-service-2.onrender.com";
     } else {
       endpoint = "/user";
-      baseUrl = "https://capstone-team-18-service-2.onrender.com";
+      baseUrl = "https://capstone-team-18-service.onrender.com";
     }
 
     try {
