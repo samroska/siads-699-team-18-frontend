@@ -45,6 +45,13 @@ const ImageUpload = ({onResponse, userType}) => {
       endpoint = "/user";
       baseUrl = "https://capstone-team-18-service.onrender.com";
     }
+    //   if (userType === "doctor") {
+    //   endpoint = "/doctor";
+    //   baseUrl = "http://localhost:8000";
+    // } else {
+    //   endpoint = "/user";
+    //   baseUrl = "http://localhost:8080";
+    // }
 
     try {
       const res = await fetch(`${baseUrl}${endpoint}`, {
