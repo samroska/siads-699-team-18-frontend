@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab } from "@mui/material";
+import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
 
-function Content() {
-const [originalImage, setOriginalImage] =  useState("");
-const [prediction, setPrediction] = useState("");
-const [imageInfo, setImageInfo] = useState({});
-const [userType, setUserType] = useState("user"); // "doctor" or "user"
+function Content({ userTypeDefault = "user" }) {
+  const [originalImage, setOriginalImage] = useState("");
+  const [prediction, setPrediction] = useState("");
+  const [imageInfo, setImageInfo] = useState({});
+  const [userType, setUserType] = useState(userTypeDefault); // "doctor" or "user"
+  const navigate = useNavigate();
 
   const formatToSignificantDigits = (num, digits = 4) => {
     if (num === 0) return "0";
@@ -26,18 +28,23 @@ const [userType, setUserType] = useState("user"); // "doctor" or "user"
   return (
     <div>
         <Paper style={{ padding: 16, marginTop: 64, minWidth: 400}}>
-          {/* User Type Tabs */}
-          <Tabs
-            value={userType}
-            onChange={handleTabChange}
-            indicatorColor="primary"
-            textColor="primary"
-            centered
-            sx={{ mb: 2 }}
-          >
-            <Tab label="User" value="user" />
-            <Tab label="Doctor" value="doctor" />
-          </Tabs>
+          {/* Home Button */}
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+            <Button 
+              variant="outlined" 
+              size="small" 
+              onClick={() => navigate('/')}
+            >
+              Home
+            </Button>
+          </Box>
+          
+          {/* User Type Indicator */}
+          <Box sx={{ mb: 2, textAlign: 'center' }}>
+            <Typography variant="h6" color="primary">
+              {userType === 'doctor' ? 'Doctor Portal' : 'User Portal'}
+            </Typography>
+          </Box>
 
           <ImageUpload onResponse={handleApiResponse} userType={userType} />
           <Divider style={{ margin: '16px 0' }} />
