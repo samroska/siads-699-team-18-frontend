@@ -2,7 +2,8 @@
 import './App.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import Content from './Content.jsx';
+import UserContent from './UserContent.jsx';
+import DoctorContent from './DoctorContent.jsx';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Box, Button, Paper, Typography } from '@mui/material';
 
@@ -28,8 +29,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/user" element={<Content userTypeDefault="user" />} />
-        <Route path="/doctor" element={<Content userTypeDefault="doctor" />} />
+        <Route path="/user" element={<UserContent />} />
+        <Route path="/doctor" element={<DoctorContent />} />
       </Routes>
       <Footer />
     </Router>
