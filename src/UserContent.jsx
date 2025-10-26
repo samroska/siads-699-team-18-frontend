@@ -53,7 +53,7 @@ function UserContent() {
           ) : originalImage ? (
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 2 }}>
 
-              <Box>
+              <Box sx={{ width: '100%' }}>
                 <TableContainer component={Paper} sx={{ width: '100%' }}>
                   <Table>
                     <TableBody>
@@ -69,78 +69,20 @@ function UserContent() {
                           </Typography>
                         </TableCell>
                       </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Actinic Keratosis - Pre-cancerous skin lesion
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            ACK: {formatToSignificantDigits(prediction.all_probabilities.ACK)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Basal Cell Carcinoma - Most common type of skin cancer
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            BCC: {formatToSignificantDigits(prediction.all_probabilities.BCC)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Melanoma - Most dangerous form of skin cancer
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            MEL: {formatToSignificantDigits(prediction.all_probabilities.MEL)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Nevus - Common mole or birthmark
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            NEV: {formatToSignificantDigits(prediction.all_probabilities.NEV)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Squamous Cell Carcinoma - Second most common skin cancer
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            SCC: {formatToSignificantDigits(prediction.all_probabilities.SCC)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                            Seborrheic Keratosis - Benign skin growth
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                            SEK: {formatToSignificantDigits(prediction.all_probabilities.SEK)}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
+                      {prediction.all_probabilities && Object.entries(prediction.all_probabilities).map(([key, value]) => (
+                        <TableRow key={key}>
+                          <TableCell>
+                            <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
+                              {key}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography variant="subtitle1">
+                              {formatToSignificantDigits(value)}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </TableContainer>

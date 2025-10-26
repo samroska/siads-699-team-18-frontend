@@ -53,9 +53,9 @@ function DoctorContent() {
               </Box>
             </Box>
           ) : originalImage ? (
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2}}>
 
-              <Box>
+              <Box sx={{ width: '100%' }}>
                 <TableContainer component={Paper} sx={{ width: '100%' }}>
                   <Table>
                     <TableBody>
