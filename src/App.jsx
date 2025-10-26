@@ -4,6 +4,9 @@ import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import UserContent from './UserContent.jsx';
 import DoctorContent from './DoctorContent.jsx';
+import About from './About.jsx';
+import Privacy from './Privacy.jsx';
+import TeamBios from './TeamBios.jsx';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Box, Button, Paper, Typography } from '@mui/material';
 
@@ -31,6 +34,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/user" element={<UserContent />} />
         <Route path="/doctor" element={<DoctorContent />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/team-bios" element={<TeamBios />} />
       </Routes>
       <Footer />
     </Router>

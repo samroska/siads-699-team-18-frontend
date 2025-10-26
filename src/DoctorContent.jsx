@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab, Button } from "@mui/material";
+import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab, Button, Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
 
@@ -7,6 +7,7 @@ function DoctorContent() {
   const [originalImage, setOriginalImage] = useState("");
   const [prediction, setPrediction] = useState("");
   const [imageInfo, setImageInfo] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const formatToSignificantDigits = (num, digits = 4) => {
@@ -14,25 +15,20 @@ function DoctorContent() {
     return parseFloat(num.toPrecision(digits));
   };
 
-  const handleApiResponse = (data) => {
-    setOriginalImage(data.originalImage);
-    setPrediction(data.prediction);
-    setImageInfo(data.image_info);
+  const handleApiResponse = (data, isLoading = false) => {
+    setLoading(isLoading);
+    if (!isLoading) {
+      setOriginalImage(data.originalImage);
+      setPrediction(data.prediction);
+      setImageInfo(data.image_info);
+    }
   };
 
   return (
     <div>
         <Paper style={{ padding: 16, marginTop: 64, minWidth: 400}}>
           {/* Home Button */}
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-            <Button 
-              variant="outlined" 
-              size="small" 
-              onClick={() => navigate('/')}
-            >
-              Home
-            </Button>
-          </Box>
+
           
           {/* User Type Indicator */}
           <Box sx={{ mb: 2, textAlign: 'center' }}>
@@ -41,19 +37,25 @@ function DoctorContent() {
             </Typography>
           </Box>
 
-          <ImageUpload onResponse={handleApiResponse} userType="doctor" />
+          <ImageUpload 
+            onResponse={(data) => handleApiResponse(data, false)} 
+            userType="doctor" 
+            setLoading={setLoading}
+          />
           <Divider style={{ margin: '16px 0' }} />
 
-         {originalImage ? (
+         {loading ? (
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 2 }}>
-              <Box  >
-                <img 
-                  src={originalImage} 
-                  alt="Uploaded" 
-                  style={{ maxWidth: '100%', maxHeight: 300, width: '100%', objectFit: 'contain' }}
-                />
+              <Skeleton variant="rectangular" width={300} height={300} />
+              <Box sx={{ width: '100%' }}>
+                <Skeleton variant="text" width={200} height={40} />
+                <Skeleton variant="rectangular" width={400} height={200} />
               </Box>
-              <Box  >
+            </Box>
+          ) : originalImage ? (
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', gap: 2 }}>
+
+              <Box>
                 <TableContainer component={Paper} sx={{ width: '100%' }}>
                   <Table>
                     <TableBody>
