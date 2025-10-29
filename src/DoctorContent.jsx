@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Paper , Divider, Box, Typography, Tooltip, Table, TableBody, TableCell, TableContainer, TableRow, Tabs, Tab, Button, Skeleton } from "@mui/material";
+import { Paper , Divider, Box, Typography, Skeleton } from "@mui/material";
+import DonutChart from "./DonutChart";
+import ProbabilitiesProgressBars from "./ProbabilitiesProgressBars";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
 
@@ -52,45 +54,18 @@ function DoctorContent() {
                 <Skeleton variant="rectangular" width={400} height={200} />
               </Box>
             </Box>
-          ) : originalImage ? (
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2}}>
-
-              <Box sx={{ width: '100%' }}>
-                <TableContainer component={Paper} sx={{ width: '100%' }}>
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>
-                          <Typography variant="subtitle1" gutterBottom sx={{ display: 'block' }}>
-                            Classification
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="subtitle1">
-                             Probability
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      {prediction.all_probabilities && Object.entries(prediction.all_probabilities).map(([key, value]) => (
-                        <TableRow key={key}>
-                          <TableCell>
-                            <Typography variant="caption" gutterBottom sx={{ display: 'block' }}>
-                              {key}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="subtitle1">
-                              {formatToSignificantDigits(value)}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+          ) : originalImage && prediction.all_probabilities ? (
+            <>
+              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'center' }}>
+                <DonutChart data={prediction.all_probabilities} />
               </Box>
-            </Box>
-          ) : <Typography color="text.secondary">No image uploaded yet.</Typography>}
+              <Box sx={{ mt: 4 }}>
+                <ProbabilitiesProgressBars data={prediction.all_probabilities} />
+              </Box>
+            </>
+          ) : (
+            <Typography color="text.secondary">No image uploaded yet.</Typography>
+          )}
         </Paper>
     </div>
   );
