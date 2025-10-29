@@ -12,8 +12,9 @@ function DonutChart({ data }) {
   const maxValue = Math.max(...values);
 
   // Generate colors
+  // Palette without green or red
   const colors = [
-    '#1976d2', '#388e3c', '#fbc02d', '#d32f2f', '#7b1fa2', '#0288d1', '#c2185b', '#ffa000', '#689f38', '#f57c00', '#455a64', '#8d6e63'
+    '#1976d2', '#7b1fa2', '#0288d1', '#c2185b', '#ffa000', '#fbc02d', '#f57c00', '#455a64', '#8d6e63', '#82b1ff', '#bbdefb', '#5c6bc0'
   ];
 
   // Calculate SVG arcs
