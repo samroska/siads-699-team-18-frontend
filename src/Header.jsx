@@ -1,33 +1,49 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, Avatar, Link, Tooltip } from '@mui/material'
+import { AppBar, Toolbar, Typography, Avatar, Link, Tooltip, Button, Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 
 function Header() {
+  const navigate = useNavigate();
 
   return (
     <div>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6" >
-             SIADS 699 Team 18 Lesion Classifier
-          </Typography>
-          <div style={{ flexGrow: 1 }} />
-            <Link href="https://www.linkedin.com/in/andre-luis-onofre-97347428/" color="inherit" target="_blank">
-                <Tooltip title="Andre Luis Camarosano Onofre" >
-                    <Avatar alt="Andre" src="andre.png" />
-                </Tooltip>
-            </Link>
-            <Link href="https://linkedin.com/in/sroska" color="inherit" target="_blank">
-                <Tooltip title="Samantha Roska">
-                    <Avatar alt="Samantha" src="sam2.png" />
-                </Tooltip>
-            </Link>
-            <Link href="https://www.linkedin.com/in/sawsan-allam-8b5b8842/" color="inherit" target="_blank">
-                <Tooltip title="Sawsan Allam">
-                    <Avatar alt="Sawsan" src="sawsan.png" />
-                </Tooltip>
-            </Link>
-          <div/>
+          <Box>
+            <Box>
+              
+              <Typography variant="h6">
+                 <img src="/um.png" alt="UMich" style={{ width: 20, height: 20 , marginRight: 3}} />
+                Lesion Classifier
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography variant="subtitle2">
+                  SIADS 699 Team 18
+                </Typography>
+
+              </Box>
+            </Box>
+            {/* <Typography variant="subtitle2">
+              SIADS 699 Team 18
+            </Typography> */}
+          </Box>
+          <Box sx={{ flexGrow: 1 }} />
+          {/* Navigation Links */}
+          <Box sx={{ display: 'flex', gap: 1, ml: 4 }}>
+            <Button color="inherit" onClick={() => navigate('/')}>
+              Home
+            </Button>
+            <Button color="inherit" onClick={() => navigate('/about')}>
+              About
+            </Button>
+            <Button color="inherit" onClick={() => navigate('/privacy')}>
+              Privacy
+            </Button>
+            <Button color="inherit" onClick={() => navigate('/team-bios')}>
+              Team Bios
+            </Button>
+          </Box>
 
         </Toolbar>
       </AppBar>
