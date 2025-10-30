@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { Box, Typography, LinearProgress, Accordion, AccordionSummary, AccordionDetails, IconButton } from "@mui/material";
+import { Box, Typography, LinearProgress, Accordion, AccordionSummary, AccordionDetails, IconButton, Avatar, Tooltip } from "@mui/material";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ProbabilityDetails from "./ProbabilityDetails";
 
 function ProbabilitiesProgressBars({ data }) {
+  // Cancerous and benign keys
+  const cancerousKeys = [
+    'Melanoma',
+    'Basal Cell Carcinoma',
+    'Squamous Cell Carcinoma',
+    'Melanoma Metastasis'
+  ];
+  const benignKeys = [
+    'Nevus',
+    'Seborrheic Keratosis',
+    'Solar Lentigo',
+    'Actinic Keratosis'
+  ];
   // data: { [key]: value }
   // Use the same color array as DonutChart
   // Palette without green or red
@@ -28,6 +41,16 @@ function ProbabilitiesProgressBars({ data }) {
                   <Typography variant="subtitle2" sx={{ mb: 0.5, fontWeight: 600 }} align="left">
                     {key}
                   </Typography>
+                  {cancerousKeys.includes(key) && (
+                    <Tooltip title="Cancerous">
+                      <Avatar sx={{ bgcolor: '#d32f2f', width: 16, height: 16, fontSize: 16 }}>C</Avatar>
+                    </Tooltip>
+                  )}
+                  {benignKeys.includes(key) && (
+                    <Tooltip title="Benign">
+                      <Avatar sx={{ bgcolor: '#388e3c', width: 16, height: 16, fontSize: 16 }}>B</Avatar>
+                    </Tooltip>
+                  )}
                   <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
                     <InfoOutlinedIcon fontSize="small" />
                   </IconButton>
