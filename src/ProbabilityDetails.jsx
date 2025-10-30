@@ -86,6 +86,13 @@ function ProbabilityDetails({ keyName }) {
       </Typography>
     );
   }
+    if (keyName === 'Vascular Lesion') {
+    return (
+      <Typography variant="body2" color="text.secondary">
+        {breakAfterWords('Vascular Lesions are abnormal growths of blood vessels that can occur in various parts of the body, including the skin.')}
+      </Typography>
+    );
+  }
   return (
     <Typography variant="body2" color="text.secondary">
       {breakAfterWords(`Additional details for ${keyName} can go here.`)}

@@ -15,7 +15,10 @@ function ProbabilitiesProgressBars({ data }) {
     'Nevus',
     'Seborrheic Keratosis',
     'Solar Lentigo',
-    'Actinic Keratosis'
+    'Actinic Keratosis',
+    'Scar',
+    'Dermatofibroma',
+    'Vascular Lesion'
   ];
   // data: { [key]: value }
   // Use the same color array as DonutChart
@@ -43,12 +46,12 @@ function ProbabilitiesProgressBars({ data }) {
                   </Typography>
                   {cancerousKeys.includes(key) && (
                     <Tooltip title="Cancerous">
-                      <Avatar sx={{ bgcolor: '#d32f2f', width: 16, height: 16, fontSize: 16 }}>C</Avatar>
+                      <Avatar sx={{ bgcolor: '#9e9e9e', width: 16, height: 16, fontSize: 16 }}>C</Avatar>
                     </Tooltip>
                   )}
                   {benignKeys.includes(key) && (
                     <Tooltip title="Benign">
-                      <Avatar sx={{ bgcolor: '#388e3c', width: 16, height: 16, fontSize: 16 }}>B</Avatar>
+                      <Avatar sx={{ bgcolor: '#9e9e9e', width: 16, height: 16, fontSize: 16 }}>B</Avatar>
                     </Tooltip>
                   )}
                   <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
