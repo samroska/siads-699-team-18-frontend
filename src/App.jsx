@@ -8,7 +8,7 @@ import About from './About.jsx';
 import Privacy from './Privacy.jsx';
 import TeamBios from './TeamBios.jsx';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { Box, Button, Paper, Typography } from '@mui/material';
+import { Box, Button, Paper, Typography, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -26,7 +26,10 @@ function LandingPage() {
   );
 }
 
+import React, { useState } from 'react';
+
 function App() {
+  const [open, setOpen] = useState(true);
   return (
     <Router>
       <Header />
@@ -38,6 +41,17 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/team-bios" element={<TeamBios />} />
       </Routes>
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>Welcome to the Skin Cancer Detection App</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            This tool is for educational purposes only. Please consult a medical professional for diagnosis and treatment.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="primary" variant="contained">Close</Button>
+        </DialogActions>
+      </Dialog>
       <Footer />
     </Router>
   );
