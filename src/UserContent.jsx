@@ -26,7 +26,7 @@ function UserContent() {
       {/* User Type Indicator */}
       <Box sx={{ mb: 2, textAlign: 'center' }}>
         <Typography variant="h6" color="primary">
-          Phone User Portal
+          User Portal
         </Typography>
         <Typography variant="body2">
           This portal is for users seeking lesion classification <br/>

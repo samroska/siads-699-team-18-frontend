@@ -18,7 +18,7 @@ function LandingPage() {
         <Typography variant="h4" gutterBottom>Welcome</Typography>
         <Typography variant="subtitle1" gutterBottom>Select your role to continue:</Typography>
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mt: 2 }}>
-          <Button variant="contained" color="primary" onClick={() => navigate('/user')}>Phone User</Button>
+          <Button variant="contained" color="primary" onClick={() => navigate('/user')}>User</Button>
           <Button variant="contained" color="secondary" onClick={() => navigate('/doctor')}>Doctor</Button>
         </Box>
       </Paper>
