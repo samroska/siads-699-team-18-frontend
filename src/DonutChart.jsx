@@ -41,11 +41,20 @@ function DonutChart({ data }) {
   // Calculate SVG arcs
   let startAngle = 0;
   const arcs = values.map((value, i) => {
+    const radius = 80;
+    const center = 100;
+    if (value === total && total > 0) {
+      // Full circle for 100%
+      return {
+        path: `M${center},${center} m-${radius},0 a${radius},${radius} 0 1,0 ${radius * 2},0 a${radius},${radius} 0 1,0 -${radius * 2},0`,
+        color: colors[i],
+        key: keys[i],
+        isFull: true
+      };
+    }
     const angle = (value / total) * 360;
     const endAngle = startAngle + angle;
     const largeArcFlag = angle > 180 ? 1 : 0;
-    const radius = 80;
-    const center = 100;
     const x1 = center + radius * Math.cos((Math.PI * startAngle) / 180);
     const y1 = center + radius * Math.sin((Math.PI * startAngle) / 180);
     const x2 = center + radius * Math.cos((Math.PI * endAngle) / 180);
