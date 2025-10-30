@@ -20,13 +20,24 @@ function ProbabilitiesProgressBars({ data }) {
     'Dermatofibroma',
     'Vascular Lesion'
   ];
-  // data: { [key]: value }
-  // Use the same color array as DonutChart
-  // Palette without green or red
-  const colors = [
-    '#1976d2', '#7b1fa2', '#0288d1', '#c2185b', '#ffa000', '#fbc02d', '#f57c00', '#455a64', '#8d6e63', '#82b1ff', '#bbdefb', '#5c6bc0'
-  ];
   const entries = Object.entries(data);
+  // Monochromatic shades
+  // Use only darker shades
+  const redShades = ['#e53935', '#d32f2f', '#c62828', '#b71c1c', '#f44336', '#ef5350'];
+  const blueShades = ['#1e88e5', '#1976d2', '#1565c0', '#0d47a1', '#2196f3', '#42a5f5'];
+  let redIdx = 0;
+  let blueIdx = 0;
+  const colors = entries.map(([key]) => {
+    if (cancerousKeys.includes(key)) {
+      const color = redShades[redIdx % redShades.length];
+      redIdx++;
+      return color;
+    } else {
+      const color = blueShades[blueIdx % blueShades.length];
+      blueIdx++;
+      return color;
+    }
+  });
   const [expanded, setExpanded] = useState(null);
   const handleExpand = (panel) => (event) => {
     event.stopPropagation();
@@ -46,12 +57,12 @@ function ProbabilitiesProgressBars({ data }) {
                   </Typography>
                   {cancerousKeys.includes(key) && (
                     <Tooltip title="Cancerous">
-                      <Avatar sx={{ bgcolor: '#9e9e9e', width: 16, height: 16, fontSize: 16 }}>C</Avatar>
+                      <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>C</Avatar>
                     </Tooltip>
                   )}
                   {benignKeys.includes(key) && (
                     <Tooltip title="Benign">
-                      <Avatar sx={{ bgcolor: '#9e9e9e', width: 16, height: 16, fontSize: 16 }}>B</Avatar>
+                      <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>B</Avatar>
                     </Tooltip>
                   )}
                   <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>

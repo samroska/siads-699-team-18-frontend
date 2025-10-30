@@ -12,10 +12,31 @@ function DonutChart({ data }) {
   const maxValue = Math.max(...values);
 
   // Generate colors
-  // Palette without green or red
-  const colors = [
-    '#1976d2', '#7b1fa2', '#0288d1', '#c2185b', '#ffa000', '#fbc02d', '#f57c00', '#455a64', '#8d6e63', '#82b1ff', '#bbdefb', '#5c6bc0'
+  // Assign red for cancerous, blue for non-cancerous
+  const cancerousKeys = [
+    'Melanoma',
+    'Basal Cell Carcinoma',
+    'Squamous Cell Carcinoma',
+    'Melanoma Metastasis'
   ];
+  const entries = Object.entries(data);
+  // Monochromatic shades
+  // Use only darker shades
+  const redShades = ['#e53935', '#d32f2f', '#c62828', '#b71c1c', '#f44336', '#ef5350'];
+  const blueShades = ['#1e88e5', '#1976d2', '#1565c0', '#0d47a1', '#2196f3', '#42a5f5'];
+  let redIdx = 0;
+  let blueIdx = 0;
+  const colors = entries.map(([key]) => {
+    if (cancerousKeys.includes(key)) {
+      const color = redShades[redIdx % redShades.length];
+      redIdx++;
+      return color;
+    } else {
+      const color = blueShades[blueIdx % blueShades.length];
+      blueIdx++;
+      return color;
+    }
+  });
 
   // Calculate SVG arcs
   let startAngle = 0;
@@ -31,7 +52,7 @@ function DonutChart({ data }) {
     const y2 = center + radius * Math.sin((Math.PI * endAngle) / 180);
     const path = `M${center},${center} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`;
     startAngle = endAngle;
-    return { path, color: colors[i % colors.length], key: keys[i] };
+    return { path, color: colors[i], key: keys[i] };
   });
 
   return (
