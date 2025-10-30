@@ -24,6 +24,11 @@ function About() {
           inspired by the real-time mobile performance demonstrated by Oztel et al. (2023). This dual approach supports both professional diagnostics and early 
           self-assessment, potentially prompting more timely medical consultations.
         </Typography>
+             <br /><br />
+        <Typography variant="body1">
+          This application is not intended to replace professional medical advice, diagnosis, or treatment. Always seek the guidance of your physician or other qualified health
+          care provider with any questions you may have regarding a medical condition.
+        </Typography>
       </Paper>
     </Box>
   );

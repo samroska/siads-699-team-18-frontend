@@ -69,11 +69,11 @@ function DoctorContent() {
                 {/* Key Map for C and B icons */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2, justifyContent: 'center' }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ bgcolor: '#9e9e9e', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16 }}>C</Box>
+                    <Box sx={{ bgcolor: '#bdbdbd', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16 }}>C</Box>
                     <Typography variant="body2" color="text.secondary">Cancerous</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ bgcolor: '#9e9e9e', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16 }}>B</Box>
+                    <Box sx={{ bgcolor: '#bdbdbd', color: 'white', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16 }}>B</Box>
                     <Typography variant="body2" color="text.secondary">Benign</Typography>
                   </Box>
                 </Box>

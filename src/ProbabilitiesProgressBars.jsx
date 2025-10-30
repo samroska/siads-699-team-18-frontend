@@ -46,56 +46,58 @@ function ProbabilitiesProgressBars({ data }) {
       return (
         <Box sx={{ width: '100%', mt: 2 }}>
           {entries.map(([key, value], i) => (
-            <Accordion key={key} sx={{ mb: 2, boxShadow: 0 }} expanded={expanded === key}>
-              <AccordionSummary
-                expandIcon={null}
-                sx={{ cursor: 'default', userSelect: 'none', minHeight: 0, padding: 0 }}
-              >
-                <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Typography variant="subtitle2" sx={{ mb: 0.5, fontWeight: 600 }} align="left">
-                    {key}
+            value === 0 ? null : (
+              <Accordion key={key} sx={{ mb: 2, boxShadow: 0 }} expanded={expanded === key}>
+                <AccordionSummary
+                  expandIcon={null}
+                  sx={{ cursor: 'default', userSelect: 'none', minHeight: 0, padding: 0 }}
+                >
+                  <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Typography variant="subtitle2" sx={{ mb: 0.5, fontWeight: 600 }} align="left">
+                      {key}
+                    </Typography>
+                    {cancerousKeys.includes(key) && (
+                      <Tooltip title="Cancerous">
+                        <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>C</Avatar>
+                      </Tooltip>
+                    )}
+                    {benignKeys.includes(key) && (
+                      <Tooltip title="Benign">
+                        <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>B</Avatar>
+                      </Tooltip>
+                    )}
+                    <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
+                      <InfoOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
+                  <Box sx={{ position: 'relative', width: '100%' }}>
+                    <LinearProgress 
+                      variant="determinate" 
+                      value={value * 100} 
+                      sx={{ 
+                        height: 12, 
+                        borderRadius: 6, 
+                        backgroundColor: '#eee',
+                        '& .MuiLinearProgress-bar': {
+                          backgroundColor: colors[i % colors.length]
+                        }
+                      }}
+                    />
+                    <Box
+                      component="span"
+                      sx={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', zIndex: 1 }}
+                      title={`${key}: ${(value * 100).toFixed(1)}%`}
+                    />
+                  </Box>
+                  <Typography variant="caption" sx={{ ml: 1 }} color="text.secondary">
+                    {(value * 100).toFixed(1)}%
                   </Typography>
-                  {cancerousKeys.includes(key) && (
-                    <Tooltip title="Cancerous">
-                      <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>C</Avatar>
-                    </Tooltip>
-                  )}
-                  {benignKeys.includes(key) && (
-                    <Tooltip title="Benign">
-                      <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>B</Avatar>
-                    </Tooltip>
-                  )}
-                  <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
-                    <InfoOutlinedIcon fontSize="small" />
-                  </IconButton>
-                </Box>
-                <Box sx={{ position: 'relative', width: '100%' }}>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={value * 100} 
-                    sx={{ 
-                      height: 12, 
-                      borderRadius: 6, 
-                      backgroundColor: '#eee',
-                      '& .MuiLinearProgress-bar': {
-                        backgroundColor: colors[i % colors.length]
-                      }
-                    }}
-                  />
-                  <Box
-                    component="span"
-                    sx={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', zIndex: 1 }}
-                    title={`${key}: ${(value * 100).toFixed(1)}%`}
-                  />
-                </Box>
-                <Typography variant="caption" sx={{ ml: 1 }} color="text.secondary">
-                  {(value * 100).toFixed(1)}%
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails sx={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
-                <ProbabilityDetails keyName={key} />
-              </AccordionDetails>
-            </Accordion>
+                </AccordionSummary>
+                <AccordionDetails sx={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
+                  <ProbabilityDetails keyName={key} />
+                </AccordionDetails>
+              </Accordion>
+            )
           ))}
         </Box>
       );
