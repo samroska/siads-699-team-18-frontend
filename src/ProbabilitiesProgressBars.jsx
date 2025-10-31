@@ -23,8 +23,8 @@ function ProbabilitiesProgressBars({ data }) {
   const entries = Object.entries(data);
   // Monochromatic shades
   // Use only darker shades
-  const redShades = ['#e53935', '#d32f2f', '#c62828', '#b71c1c', '#f44336', '#ef5350'];
-  const blueShades = ['#1e88e5', '#1976d2', '#1565c0', '#0d47a1', '#2196f3', '#42a5f5'];
+  const redShades = ['#CD5C5C','#B22222','#A52A2A','#8B0000','#E57373','#C62828','#D32F2F','#B71C1C'];
+  const blueShades = ['#1E90FF','#1976D2','#1565C0','#0D47A1','#2196F3','#42A5F5','#64B5F6','#90CAF9'];
   let redIdx = 0;
   let blueIdx = 0;
   const colors = entries.map(([key]) => {
@@ -58,12 +58,12 @@ function ProbabilitiesProgressBars({ data }) {
                     </Typography>
                     {cancerousKeys.includes(key) && (
                       <Tooltip title="Cancerous">
-                        <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>C</Avatar>
+                        <Avatar sx={{ bgcolor: '#bdbdbd', width: 24, height: 24, fontSize: 16 }}>C</Avatar>
                       </Tooltip>
                     )}
                     {benignKeys.includes(key) && (
                       <Tooltip title="Benign">
-                        <Avatar sx={{ bgcolor: colors[i], width: 24, height: 24, fontSize: 16 }}>B</Avatar>
+                        <Avatar sx={{ bgcolor: '#bdbdbd', width: 24, height: 24, fontSize: 16 }}>B</Avatar>
                       </Tooltip>
                     )}
                     <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
