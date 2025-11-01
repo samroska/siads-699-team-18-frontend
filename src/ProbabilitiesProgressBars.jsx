@@ -33,22 +33,13 @@ function ProbabilitiesProgressBars({ data }) {
   
   // Only show first entry by default, or all if showAll is true
   const displayedEntries = showAll ? nonZeroEntries : nonZeroEntries.slice(0, 1);
-  // Monochromatic shades
-  // Use only darker shades
-  const redShades = ['#CD5C5C','#B22222','#A52A2A','#E57373','#8B0000','#C62828','#D32F2F','#B71C1C'];
-  const greenShades = ['#43A047','#388E3C','#2E7D32','#1B5E20','#4CAF50','#66BB6A','#81C784','#A5D6A7'];
-  let redIdx = 0;
-  let greenIdx = 0;
+  
+  // Single colors for each condition type
+  const cancerousColor = '#D32F2F'; // Red for cancerous
+  const benignColor = '#43A047';    // Green for benign
+  
   const colors = nonZeroEntries.map(([key]) => {
-    if (cancerousKeys.includes(key)) {
-      const color = redShades[redIdx % redShades.length];
-      redIdx++;
-      return color;
-    } else {
-      const color = greenShades[greenIdx % greenShades.length];
-      greenIdx++;
-      return color;
-    }
+    return cancerousKeys.includes(key) ? cancerousColor : benignColor;
   });
   const [expanded, setExpanded] = useState(null);
   const handleExpand = (panel) => (event) => {

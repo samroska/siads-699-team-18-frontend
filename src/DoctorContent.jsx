@@ -38,7 +38,7 @@ function DoctorContent() {
               Doctor Portal
             </Typography>
              <Typography variant="body2">
-              Upload a skin-lesion photo and let our machine learning model <br/>
+              Upload a dermatoscopic skin-lesion photo and let our machine learning model <br/>
               provide preliminary assessment of your skin condition
             </Typography>
           </Box>

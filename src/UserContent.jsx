@@ -29,7 +29,7 @@ function UserContent() {
           User Portal
         </Typography>
         <Typography variant="body2">
-          Upload a skin-lesion photo and let our machine learning model <br/>
+          Upload a phone image of a skin-lesion and let our machine learning model <br/>
           provide preliminary assessment of your skin condition.
         </Typography>
       </Box>
