@@ -38,9 +38,8 @@ function DoctorContent() {
               Doctor Portal
             </Typography>
              <Typography variant="body2">
-              This portal is for Doctors seeking lesion classification <br/>
-              results that are using dermatoscopic images.<br/>
-              Please upload an image to get started.
+              Upload a skin-lesion photo and let our machine learning model <br/>
+              provide preliminary assessment of your skin condition
             </Typography>
           </Box>
 
@@ -59,12 +58,34 @@ function DoctorContent() {
                 <Skeleton variant="rectangular" width={400} height={200} />
               </Box>
             </Box>
-          ) : originalImage && prediction.all_probabilities ? (
+          ) : (originalImage && prediction && typeof prediction === 'object' && prediction.all_probabilities && Object.keys(prediction.all_probabilities).length > 0) ? (
             <>
-              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'center' }}>
+              {/* <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'center' }}>
                 <DonutChart data={prediction.all_probabilities} />
-              </Box>
+              </Box> */}
               <Box sx={{ mt: 4 }}>
+                {/* Highest probability paragraph */}
+                {(() => {
+                  const probs = prediction.all_probabilities || {};
+                  const keys = Object.keys(probs);
+                  const values = Object.values(probs);
+                  if (keys.length > 0 && typeof values[0] === 'number') {
+                    const maxKey = keys[0];
+                    const maxValue = values[0];
+                    return (
+                      <Typography variant="body1" sx={{ mb: 2 }}>
+                        The highest predicted probability is ({parseFloat(maxValue.toPrecision(5))}), <br/>
+                        meaning the model thinks there’s a ({(maxValue * 100).toFixed(1)}%) chance <br/>
+                        that the image corresponds to <b>{maxKey}</b>.
+                      </Typography>
+                    );
+                  }
+                  return (
+                    <Typography variant="body1" sx={{ mb: 2 }}>
+                      No probability data available.
+                    </Typography>
+                  );
+                })()}
                 <ProbabilitiesProgressBars data={prediction.all_probabilities} />
                 {/* Key Map for C and B icons */}
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2, justifyContent: 'center' }}>

@@ -45,7 +45,8 @@ function App() {
         <DialogTitle>Welcome to the Skin Cancer Detection App</DialogTitle>
         <DialogContent>
           <Typography variant="body1">
-            This tool is for educational purposes only. Please consult a medical professional for diagnosis and treatment.
+           This application is not intended to replace professional medical advice, diagnosis, or treatment. Always seek the guidance of your physician or other qualified health
+          care provider with any questions you may have regarding a medical condition.
           </Typography>
         </DialogContent>
         <DialogActions>

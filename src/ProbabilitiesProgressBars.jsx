@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Box, Typography, LinearProgress, Accordion, AccordionSummary, AccordionDetails, IconButton, Avatar, Tooltip } from "@mui/material";
+import { Box, Typography, LinearProgress, Accordion, AccordionSummary, AccordionDetails, IconButton, Avatar, Tooltip, Button } from "@mui/material";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ProbabilityDetails from "./ProbabilityDetails";
 
 function ProbabilitiesProgressBars({ data }) {
@@ -21,20 +23,30 @@ function ProbabilitiesProgressBars({ data }) {
     'Vascular Lesion'
   ];
   const entries = Object.entries(data);
+  // Sort entries by probability value (descending) to show highest first
+  const sortedEntries = entries.sort(([,a], [,b]) => b - a);
+  // Filter out zero values
+  const nonZeroEntries = sortedEntries.filter(([, value]) => value > 0);
+  
+  // State for showing additional progress bars
+  const [showAll, setShowAll] = useState(false);
+  
+  // Only show first entry by default, or all if showAll is true
+  const displayedEntries = showAll ? nonZeroEntries : nonZeroEntries.slice(0, 1);
   // Monochromatic shades
   // Use only darker shades
-  const redShades = ['#CD5C5C','#B22222','#A52A2A','#8B0000','#E57373','#C62828','#D32F2F','#B71C1C'];
-  const blueShades = ['#1E90FF','#1976D2','#1565C0','#0D47A1','#2196F3','#42A5F5','#64B5F6','#90CAF9'];
+  const redShades = ['#CD5C5C','#B22222','#A52A2A','#E57373','#8B0000','#C62828','#D32F2F','#B71C1C'];
+  const greenShades = ['#43A047','#388E3C','#2E7D32','#1B5E20','#4CAF50','#66BB6A','#81C784','#A5D6A7'];
   let redIdx = 0;
-  let blueIdx = 0;
-  const colors = entries.map(([key]) => {
+  let greenIdx = 0;
+  const colors = nonZeroEntries.map(([key]) => {
     if (cancerousKeys.includes(key)) {
       const color = redShades[redIdx % redShades.length];
       redIdx++;
       return color;
     } else {
-      const color = blueShades[blueIdx % blueShades.length];
-      blueIdx++;
+      const color = greenShades[greenIdx % greenShades.length];
+      greenIdx++;
       return color;
     }
   });
@@ -45,8 +57,10 @@ function ProbabilitiesProgressBars({ data }) {
   };
       return (
         <Box sx={{ width: '100%', mt: 2 }}>
-          {entries.map(([key, value], i) => (
-            value === 0 ? null : (
+          {displayedEntries.map(([key, value], i) => {
+            // Find the original index in nonZeroEntries for correct color mapping
+            const originalIndex = nonZeroEntries.findIndex(([k]) => k === key);
+            return (
               <Accordion key={key} sx={{ mb: 2, boxShadow: 0 }} expanded={expanded === key}>
                 <AccordionSummary
                   expandIcon={null}
@@ -58,17 +72,33 @@ function ProbabilitiesProgressBars({ data }) {
                     </Typography>
                     {cancerousKeys.includes(key) && (
                       <Tooltip title="Cancerous">
-                        <Avatar sx={{ bgcolor: '#bdbdbd', width: 24, height: 24, fontSize: 16 }}>C</Avatar>
+                        <Avatar sx={{ bgcolor: colors[originalIndex], width: 24, height: 24, fontSize: 16 }}>C</Avatar>
                       </Tooltip>
                     )}
                     {benignKeys.includes(key) && (
                       <Tooltip title="Benign">
-                        <Avatar sx={{ bgcolor: '#bdbdbd', width: 24, height: 24, fontSize: 16 }}>B</Avatar>
+                        <Avatar sx={{ bgcolor: colors[originalIndex], width: 24, height: 24, fontSize: 16 }}>B</Avatar>
                       </Tooltip>
                     )}
-                    <IconButton size="small" onClick={handleExpand(key)} sx={{ ml: 1 }}>
-                      <InfoOutlinedIcon fontSize="small" />
-                    </IconButton>
+                    <Box 
+                      component="span" 
+                      onClick={handleExpand(key)} 
+                      sx={{ 
+                        ml: 1, 
+                        cursor: 'pointer', 
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        '&:hover': {
+                          bgcolor: 'rgba(0, 0, 0, 0.04)'
+                        }
+                      }}
+                    >
+                      <InfoOutlinedIcon fontSize="small" color="primary"/>
+                    </Box>
                   </Box>
                   <Box sx={{ position: 'relative', width: '100%' }}>
                     <LinearProgress 
@@ -79,7 +109,7 @@ function ProbabilitiesProgressBars({ data }) {
                         borderRadius: 6, 
                         backgroundColor: '#eee',
                         '& .MuiLinearProgress-bar': {
-                          backgroundColor: colors[i % colors.length]
+                          backgroundColor: colors[originalIndex]
                         }
                       }}
                     />
@@ -97,9 +127,25 @@ function ProbabilitiesProgressBars({ data }) {
                   <ProbabilityDetails keyName={key} />
                 </AccordionDetails>
               </Accordion>
-            )
-          ))}
+            );
+          })}
+          
+          {/* Show More/Less button when there are additional entries */}
+          {nonZeroEntries.length > 1 && (
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Button
+                variant="text"
+                onClick={() => setShowAll(!showAll)}
+                startIcon={showAll ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                sx={{ textTransform: 'none' }}
+              >
+                {showAll ? 'Show Less' : `Show All Probabilities`}
+              </Button>
+            </Box>
+          )}
+          
         </Box>
+        
       );
 }
 
