@@ -62,15 +62,20 @@ function UserContent() {
               const keys = Object.keys(probs);
               const values = Object.values(probs);
               if (keys.length > 0 && typeof values[0] === 'number') {
-                const maxKey = keys[0];
-                const maxValue = values[0];
-                if (maxValue === 0) {
+                // Check if the first item in all_probabilities is 0
+                const firstValue = values[0];
+                if (firstValue === 0) {
                   return (
                     <Typography variant="body1" sx={{ mb: 2 }}>
                       We could not classify this image.
                     </Typography>
                   );
                 }
+                
+                // Find the actual maximum value and its corresponding key
+                const maxValue = Math.max(...values);
+                const maxIndex = values.indexOf(maxValue);
+                const maxKey = keys[maxIndex];
                 return (
                   <Typography variant="body1" sx={{ mb: 2 }}>
                         The highest predicted probability is ({parseFloat(maxValue.toPrecision(5))}), <br/>
