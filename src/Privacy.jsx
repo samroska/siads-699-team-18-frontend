@@ -35,13 +35,13 @@ function Privacy() {
           <Typography variant="body1" paragraph>
             <strong>We do not collect, track, or store any personal information.</strong> This includes:
           </Typography>
-          <ul style={{ marginLeft: '20px' }}>
-            <li>No user accounts or registration required</li>
-            <li>No personal identifiers collected</li>
-            <li>No browsing behavior tracking</li>
-            <li>No cookies for tracking purposes</li>
-            <li>No location data collection</li>
-          </ul>
+          <Box sx={{ ml: 2 }}>
+            <Typography variant="body1">No user accounts or registration required</Typography>
+            <Typography variant="body1">No personal identifiers collected</Typography>
+            <Typography variant="body1">No browsing behavior tracking</Typography>
+            <Typography variant="body1">No cookies for tracking purposes</Typography>
+            <Typography variant="body1">No location data collection</Typography>
+          </Box>
         </Box>
 
         {/* Medical Disclaimer Section */}
@@ -53,12 +53,12 @@ function Privacy() {
           <Typography variant="body1" paragraph>
             <strong>This application provides preliminary AI-based predictions for educational and research purposes only.</strong> The predictions are:
           </Typography>
-          <ul style={{ marginLeft: '20px' }}>
-            <li>Not a substitute for professional medical diagnosis</li>
-            <li>Not intended for clinical decision-making</li>
-            <li>Provided for informational purposes only</li>
-            <li>Should not delay seeking professional medical advice</li>
-          </ul>
+          <Box sx={{ ml: 2 }}>
+            <Typography variant="body1">Not a substitute for professional medical diagnosis</Typography>
+            <Typography variant="body1">Not intended for clinical decision-making</Typography>
+            <Typography variant="body1">Provided for informational purposes only</Typography>
+            <Typography variant="body1">Should not delay seeking professional medical advice</Typography>
+          </Box>
         </Box>
 
         {/* How It Works Section */}
