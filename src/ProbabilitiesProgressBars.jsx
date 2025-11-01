@@ -51,6 +51,8 @@ function ProbabilitiesProgressBars({ data }) {
           {displayedEntries.map(([key, value], i) => {
             // Find the original index in nonZeroEntries for correct color mapping
             const originalIndex = nonZeroEntries.findIndex(([k]) => k === key);
+            // Always show the key value
+            const displayKey = key;
             return (
               <Accordion key={key} sx={{ mb: 2, boxShadow: 0 }} expanded={expanded === key}>
                 <AccordionSummary
@@ -59,7 +61,7 @@ function ProbabilitiesProgressBars({ data }) {
                 >
                   <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Typography variant="subtitle2" sx={{ mb: 0.5, fontWeight: 600 }} align="left">
-                      {key}
+                      {displayKey}
                     </Typography>
                     {cancerousKeys.includes(key) && (
                       <Tooltip title="Cancerous">

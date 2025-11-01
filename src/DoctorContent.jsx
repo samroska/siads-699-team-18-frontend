@@ -72,6 +72,13 @@ function DoctorContent() {
                   if (keys.length > 0 && typeof values[0] === 'number') {
                     const maxKey = keys[0];
                     const maxValue = values[0];
+                    if (maxValue === 0) {
+                      return (
+                        <Typography variant="body1" sx={{ mb: 2 }}>
+                          We could not classify this image.
+                        </Typography>
+                      );
+                    }
                     return (
                       <Typography variant="body1" sx={{ mb: 2 }}>
                         The highest predicted probability is ({parseFloat(maxValue.toPrecision(5))}), <br/>
