@@ -41,20 +41,20 @@ const ImageUpload = ({onResponse, userType}) => {
     // Determine endpoint and base URL based on user type
     let endpoint = "";
     let baseUrl = "";
-    // if (userType === "doctor") {
-    //   endpoint = "/doctor";
-    //   baseUrl = "https://capstone-team-18-service-2.onrender.com";
-    // } else {
-    //   endpoint = "/user";
-    //   baseUrl = "https://capstone-team-18-service.onrender.com";
-    // }
-      if (userType === "doctor") {
+    if (userType === "doctor") {
       endpoint = "/doctor";
-      baseUrl = "http://localhost:8000";
+      baseUrl = "https://capstone-team-18-service-2.onrender.com";
     } else {
       endpoint = "/user";
-      baseUrl = "http://localhost:8080";
+      baseUrl = "https://capstone-team-18-service.onrender.com";
     }
+    //   if (userType === "doctor") {
+    //   endpoint = "/doctor";
+    //   baseUrl = "http://localhost:8000";
+    // } else {
+    //   endpoint = "/user";
+    //   baseUrl = "http://localhost:8080";
+    // }
 
     try {
       const res = await fetch(`${baseUrl}${endpoint}`, {
