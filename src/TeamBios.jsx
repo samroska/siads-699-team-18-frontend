@@ -15,7 +15,7 @@ function TeamBios() {
                 <Avatar alt="Andre" src="andre.png" sx={{ width: 100, height: 100, mx: 'auto', mb: 2 }} />
               </Tooltip>
             </Link>
-            <Typography variant="h6">Andre Luis Camarosano Onofre</Typography>
+            <Typography variant="h6">Andre Onofre</Typography>
             <Typography variant="body2" color="text.secondary">
               Bio coming soon.
             </Typography>
