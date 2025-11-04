@@ -1,16 +1,56 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Skin Cancer Detection Frontend
 
-Currently, two official plugins are available:
+This is a React + Vite frontend for the Skin Cancer Detection application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## React Compiler
+Follow these steps to set up and run the application locally:
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Node.js (v18 or newer recommended)
+- npm (comes with Node.js)
 
-## Expanding the ESLint configuration
+### Installation
+1. Clone the repository:
+	```bash
+	git clone https://github.com/<your-org>/siads-699-team-18-frontend.git
+	cd siads-699-team-18-frontend
+	```
+2. Install dependencies:
+	```bash
+	npm install
+	```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Running the Application
+Start the development server:
+```bash
+npm run dev
+```
+This will launch the app at [http://localhost:5173](http://localhost:5173) (default Vite port).
+
+### Usage
+1. Open your browser and go to [http://localhost:5173](http://localhost:5173).
+2. Choose your role (User or Doctor) on the landing page.
+3. Upload an image and view the results.
+
+- you can find demotoscopic images [here](https://challenge.isic-archive.com/landing/milk10k/)
+- you can find phone images [here]()
+
+### Project Structure
+- `src/` - Main source code (components, styles, etc.)
+- `public/` - Static assets
+- `index.html` - Main HTML file
+- `package.json` - Project dependencies and scripts
+
+### Additional Notes
+- The backend service must be running and accessible for predictions to work.
+- If you encounter issues, ensure your Node.js and npm versions are up to date.
+
+### Contributing
+1. Fork the repository and create a new branch for your feature or fix.
+2. Make your changes and commit with clear messages.
+3. Push your branch and open a pull request.
+
+### Contact
+For questions or help, contact the project maintainers or open an issue in the repository.
