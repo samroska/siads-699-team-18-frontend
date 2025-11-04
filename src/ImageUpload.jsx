@@ -48,7 +48,7 @@ const ImageUpload = ({onResponse, userType}) => {
       endpoint = "/user";
       baseUrl = "https://capstone-team-18-service.onrender.com";
     }
-    //   if (userType === "doctor") {
+    // if (userType === "doctor") {
     //   endpoint = "/doctor";
     //   baseUrl = "http://localhost:8000";
     // } else {
@@ -84,6 +84,15 @@ const ImageUpload = ({onResponse, userType}) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2  }}>
+         <Button
+          variant="contained"
+          sx={{ mt: 2, backgroundColor: '#8e24aa', color: '#fff', '&:hover': { backgroundColor: '#6d1b7b' }, alignItems: 'center', gap: 1 }}
+          onClick={() => { if (!loading && fileInputRef.current) fileInputRef.current.click(); }}
+          disabled={loading}
+        >
+          <CloudUploadIcon sx={{ fontSize: 22 }} />
+          Upload Your Image
+        </Button>
       <Box
         sx={{
           border: '2px dashed #1976d2',
@@ -117,17 +126,9 @@ const ImageUpload = ({onResponse, userType}) => {
           onChange={handleFileChange}
           style={{ display: 'none' }}
         />
-        <Button
-          variant="contained"
-          sx={{ mt: 2, backgroundColor: '#8e24aa', color: '#fff', '&:hover': { backgroundColor: '#6d1b7b' }, alignItems: 'center', gap: 1 }}
-          onClick={() => { if (!loading && fileInputRef.current) fileInputRef.current.click(); }}
-          disabled={loading}
-        >
-          <CloudUploadIcon sx={{ fontSize: 22 }} />
-          Upload Your Image
-        </Button>
         <Typography xs={{Padding: 2}}variant="body2" color="text.secondary">
-          or drop it here
+          Drag and drop an image here<br/>
+          Accepted imge formats: .png, .jpg, .jpeg, .heic, .heif
         </Typography>
       </Box>
 

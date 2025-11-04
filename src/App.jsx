@@ -42,7 +42,7 @@ function App() {
         <Route path="/team-bios" element={<TeamBios />} />
       </Routes>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Welcome to the Skin Cancer Detection App</DialogTitle>
+        <DialogTitle>Welcome to the Skin Lesion Classification app</DialogTitle>
         <DialogContent>
           <Typography variant="body1">
            This application is not intended to replace professional medical advice, diagnosis, or treatment. Always seek the guidance of your physician or other qualified health
