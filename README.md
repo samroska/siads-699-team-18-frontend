@@ -70,7 +70,7 @@ Follow these steps to set up and run the application locally:
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/<your-org>/siads-699-team-18-frontend.git
+    git clone https://github.com/samroska/siads-699-team-18-frontend.git
     cd siads-699-team-18-frontend
     ```
 2. Install dependencies:
