@@ -43,10 +43,10 @@ const ImageUpload = ({onResponse, userType}) => {
     let baseUrl = "";
     if (userType === "doctor") {
       endpoint = "/doctor";
-      baseUrl = "https://siads-699-team-18-service-2-production.up.railway.app";
+      baseUrl = "https://capstone-team-18-service-2.onrender.com";
     } else {
       endpoint = "/user";
-      baseUrl = "https://siads-699-team-18-service-production.up.railway.app";
+      baseUrl = "https://capstone-team-18-service.onrender.com";
     }
     // if (userType === "doctor") {
     //   endpoint = "/doctor";
