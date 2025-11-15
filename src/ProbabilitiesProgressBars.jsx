@@ -6,7 +6,6 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ProbabilityDetails from "./ProbabilityDetails";
 
 function ProbabilitiesProgressBars({ data }) {
-  // Cancerous and benign keys
   const cancerousKeys = [
     'Melanoma',
     'Basal Cell Carcinoma',
@@ -23,22 +22,19 @@ function ProbabilitiesProgressBars({ data }) {
     'Vascular Lesion'
   ];
   const entries = Object.entries(data);
-  // Sort entries by probability value (descending) to show highest first
+
   const sortedEntries = entries.sort(([,a], [,b]) => b - a);
-  // Filter out zero values
-  const nonZeroEntries = sortedEntries.filter(([, value]) => value > 0);
-  
-  // State for showing additional progress bars
+
+  const allEntries = sortedEntries;
+
   const [showAll, setShowAll] = useState(false);
-  
-  // Only show first entry by default, or all if showAll is true
-  const displayedEntries = showAll ? nonZeroEntries : nonZeroEntries.slice(0, 1);
-  
-  // Single colors for each condition type
+
+  const displayedEntries = showAll ? allEntries : allEntries.slice(0, 1);
+
   const cancerousColor = '#D32F2F'; // Red for cancerous
   const benignColor = '#43A047';    // Green for benign
   
-  const colors = nonZeroEntries.map(([key]) => {
+  const colors = allEntries.map(([key]) => {
     return cancerousKeys.includes(key) ? cancerousColor : benignColor;
   });
   const [expanded, setExpanded] = useState(null);
@@ -49,9 +45,7 @@ function ProbabilitiesProgressBars({ data }) {
       return (
         <Box sx={{ width: '100%', mt: 2 }}>
           {displayedEntries.map(([key, value], i) => {
-            // Find the original index in nonZeroEntries for correct color mapping
-            const originalIndex = nonZeroEntries.findIndex(([k]) => k === key);
-            // Always show the key value
+            const originalIndex = allEntries.findIndex(([k]) => k === key);
             const displayKey = key;
             return (
               <Accordion key={key} sx={{ mb: 2, boxShadow: 0 }} expanded={expanded === key}>
@@ -124,7 +118,7 @@ function ProbabilitiesProgressBars({ data }) {
           })}
           
           {/* Show More/Less button when there are additional entries */}
-          {nonZeroEntries.length > 1 && (
+          {allEntries.length > 1 && (
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Button
                 variant="text"
