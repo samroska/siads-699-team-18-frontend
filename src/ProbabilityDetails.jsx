@@ -86,10 +86,17 @@ function ProbabilityDetails({ keyName }) {
       </Typography>
     );
   }
-    if (keyName === 'Vascular Lesion') {
+   if (keyName === 'Vascular Lesion') {
     return (
       <Typography variant="body2" color="text.secondary">
         {breakAfterWords('Vascular Lesions are abnormal growths of blood vessels that can occur in various parts of the body, including the skin.')}
+      </Typography>
+    );
+  }
+  if (keyName === 'Benign Keratosis') {
+    return (
+      <Typography variant="body2" color="text.secondary">
+        {breakAfterWords('Benign Keratosis is a common, non-cancerous skin growth that can appear as rough, scaly patches on the skin.')}
       </Typography>
     );
   }
@@ -98,6 +105,7 @@ function ProbabilityDetails({ keyName }) {
       {breakAfterWords(`Additional details for ${keyName} can go here.`)}
     </Typography>
   );
+  
 }
 
 export default ProbabilityDetails;

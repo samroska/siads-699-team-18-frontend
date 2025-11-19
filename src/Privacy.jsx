@@ -6,7 +6,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 
 function Privacy() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10, p: 2 }}>
+    <Box sx={{ display: 'flex', mt: 10, p: 2, textAlign: 'left' }}>
       <Paper sx={{ p: 4, maxWidth: 800 }}>
         <Typography variant="h4" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <SecurityIcon color="primary" />
@@ -19,74 +19,75 @@ function Privacy() {
         <Box sx={{ mb: 4 }}>
           <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#43A047' }}>
             <DeleteIcon />
-            No Image Storage
+            Image Handling: No Image Storage
           </Typography>
-          <Typography variant="body1" paragraph>
-            <strong>We do not store, save, or retain any images you upload.</strong> All images are processed temporarily in memory for analysis and are immediately discarded after generating predictions. Your images never reach our servers or databases.
+          <Typography variant="body1">
+            <strong>We do not store, save, or retain any images you upload.</strong> 
+            We do not store, save, or retain any images you upload. All images are processed temporarily in memory and are immediately discarded after generating predictions. Your images never reach any database or long-term storage.
           </Typography>
         </Box>
-
+        <Divider sx={{ my: 3 }} />
         {/* Data Collection Section */}
         <Box sx={{ mb: 4 }}>
           <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#43A047' }}>
             <SecurityIcon />
-            No Personal Data Collection
+           Personal Data: No Information Collected
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1">
             <strong>We do not collect, track, or store any personal information.</strong> This includes:
           </Typography>
           <Box sx={{ ml: 2 }}>
-            <Typography variant="body1">No user accounts or registration required</Typography>
-            <Typography variant="body1">No personal identifiers collected</Typography>
-            <Typography variant="body1">No browsing behavior tracking</Typography>
-            <Typography variant="body1">No cookies for tracking purposes</Typography>
-            <Typography variant="body1">No location data collection</Typography>
+            <Typography variant="body1"><li>No user accounts or login</li></Typography>
+            <Typography variant="body1"><li>No personal identifiers </li></Typography>
+            <Typography variant="body1"><li>No browsing behavior tracking</li></Typography>
+            <Typography variant="body1"><li>No tracking cookies</li></Typography>
+            <Typography variant="body1"><li>No location data </li></Typography>
           </Box>
         </Box>
-
+        <Divider sx={{ my: 3 }} />
         {/* Medical Disclaimer Section */}
         <Box sx={{ mb: 4 }}>
           <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#ff9800' }}>
             <WarningIcon />
-            Preliminary Predictions Only
+            Model Output: Preliminary Predictions Only
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1">
             <strong>This application provides preliminary AI-based predictions for educational and research purposes only.</strong> The predictions are:
           </Typography>
           <Box sx={{ ml: 2 }}>
-            <Typography variant="body1">Not a substitute for professional medical diagnosis</Typography>
-            <Typography variant="body1">Not intended for clinical decision-making</Typography>
-            <Typography variant="body1">Provided for informational purposes only</Typography>
-            <Typography variant="body1">Should not delay seeking professional medical advice</Typography>
+            <Typography variant="body1"><li>Are not a medical diagnosis</li></Typography>
+            <Typography variant="body1"><li>Should not guide clinical decisions</li></Typography>
+            <Typography variant="body1"><li>Are intended only as general information</li></Typography>
+            <Typography variant="body1"><li>Should not delay seeking professional medical care</li></Typography>
           </Box>
         </Box>
-
+        <Divider sx={{ my: 3 }} />
         {/* How It Works Section */}
         <Box sx={{ mb: 4 }}>
           <Typography variant="h6" gutterBottom>
             How Our Privacy Protection Works
           </Typography>
           <Typography variant="body1" paragraph>
-            1. <strong>Upload:</strong> You select an image from your device
+            1. <strong>Upload:</strong> You choose an image from your device
           </Typography>
           <Typography variant="body1" paragraph>
-            2. <strong>Process:</strong> The image is analyzed by our AI model in real-time
+            2. <strong>Process:</strong> The image is analyzed by our AI model in real time
           </Typography>
           <Typography variant="body1" paragraph>
-            3. <strong>Predict:</strong> Results are displayed immediately on your screen
+            3. <strong>Predict:</strong> Your result appears immediately on your screen
           </Typography>
           <Typography variant="body1" paragraph>
-            4. <strong>Delete:</strong> The image is automatically removed from memory
+            4. <strong>Delete:</strong> The image is automatically cleared from memory
           </Typography>
         </Box>
-
+        <Divider sx={{ my: 3 }} />
         {/* Contact Section */}
         <Box sx={{ mb: 2 }}>
           <Typography variant="h6" gutterBottom>
             Questions About Privacy?
           </Typography>
           <Typography variant="body1">
-            This application was developed as part of the SIADS 699 capstone project. If you have any questions about our privacy practices, please contact the development team.
+            This application was developed as part of the SIADS 699 Capstone Project. If you have any questions about our privacy practices, please contact the development team.
           </Typography>
         </Box>
 
