@@ -19,7 +19,8 @@ function ProbabilitiesProgressBars({ data }) {
     'Actinic Keratosis',
     'Scar',
     'Dermatofibroma',
-    'Vascular Lesion'
+    'Vascular Lesion',
+    'Benign Keratosis'
   ];
   const entries = Object.entries(data);
 
