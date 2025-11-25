@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Paper , Divider, Box, Typography, Skeleton } from "@mui/material";
-import DonutChart from "./DonutChart";
 import ProbabilitiesProgressBars from "./ProbabilitiesProgressBars";
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "./ImageUpload";
@@ -11,6 +10,26 @@ function UserContent() {
   const [imageInfo, setImageInfo] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Export probabilities as CSV
+  const handleExportCSV = () => {
+    if (!prediction || !prediction.all_probabilities) return;
+    const probs = prediction.all_probabilities;
+    const headers = ['Class', 'Probability (%)'];
+    const rows = Object.entries(probs).map(([key, value]) => [key, (value * 100).toFixed(1)]);
+    const csvContent = [headers, ...rows]
+      .map(row => row.map(String).join(','))
+      .join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'probabilities.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   const handleApiResponse = (data, isLoading = false) => {
     setLoading(isLoading);
@@ -91,6 +110,11 @@ function UserContent() {
               );
             })()}
             <ProbabilitiesProgressBars data={prediction.all_probabilities} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+              <button onClick={handleExportCSV} style={{ padding: '8px 16px', borderRadius: 4, border: '1px solid #1976d2', background: '#1976d2', color: 'white', cursor: 'pointer', fontWeight: 500 }}>
+                Export CSV
+              </button>
+            </Box>
             {/* Key Map for C and B icons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2, justifyContent: 'center' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
