@@ -2,7 +2,7 @@ import { useRef, useState} from "react";
 import { Box, Button, Typography, Alert, Snackbar, CircularProgress } from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import { Padding } from "@mui/icons-material";
+import { Height, Padding } from "@mui/icons-material";
  
 const ImageUpload = ({onResponse, userType}) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -101,7 +101,8 @@ const ImageUpload = ({onResponse, userType}) => {
           mt: 2,
           mb: 2,
           background: '#fafafa',
-          minWidth: 320,
+          minWidth: 90,
+          minHeight: 90,
           textAlign: 'center',
           cursor: loading ? 'not-allowed' : 'pointer',
           opacity: loading ? 0.6 : 1,
@@ -126,7 +127,7 @@ const ImageUpload = ({onResponse, userType}) => {
           onChange={handleFileChange}
           style={{ display: 'none' }}
         />
-        <Typography xs={{Padding: 2}}variant="body2" color="text.secondary">
+        <Typography sx={{padding: 2}} variant="body2" color="text.secondary">
           Drag and drop an image here<br/>
           Accepted imge formats: .png, .jpg, .jpeg, .heic, .heif
         </Typography>
