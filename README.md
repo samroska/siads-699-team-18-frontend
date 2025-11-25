@@ -28,6 +28,9 @@ Repos used to make this application:
 - Users Service: https://github.com/samroska/siads-699-team-18-service
 - Doctors Service: https://github.com/samroska/siads-699-team-18-service-2
 
+The models used in this application are stored withing the corresponding service. However the code used to generate those models can be found at:
+- Models: 
+
 ### Key Features
 
 #### User Portal
@@ -112,7 +115,14 @@ This will launch the app at [http://localhost:5173](http://localhost:5173) (defa
 
 ### Finding Images
 
-You can find images for dermatoscopic imput [here]()
+- PAD-UFES-20
+    - https://www.kaggle.com/datasets/mahdavi1202/skin-cancer
+
+- Monkeypox Skin Lesion Dataset (MSLD)
+    - https://www.kaggle.com/datasets/nafin59/monkeypox-skin-lesion-dataset
+
+-BCN20000
+    - https://figshare.com/articles/journal_contribution/BCN20000_Dermoscopic_Lesions_in_the_Wild/24140028/1
 
 
 ### Contributing
