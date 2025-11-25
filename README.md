@@ -29,7 +29,7 @@ Repos used to make this application:
 - Doctors Service: https://github.com/samroska/siads-699-team-18-service-2
 
 The models used in this application are stored withing the corresponding service. However the code used to generate those models can be found at:
-- Models: 
+- Models: https://github.com/samroska/siads-699-team-18-models
 
 ### Key Features
 
